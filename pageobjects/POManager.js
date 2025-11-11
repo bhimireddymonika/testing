@@ -46,7 +46,7 @@ const { LoginPage } = require('./LoginPage');
 const { DashboardPage } = require('./DashboardPage');
 const { OrdersHistoryPage } = require('./OrdersHistoryPage');
 const { OrdersReviewPage } = require('./OrdersReviewPage');
-const { CartPage } = require('./cartPage');
+const { CartPage } = require('./CartPage');
 
 class POManager {
   constructor(page) {
