@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+import { trace } from 'console';
 
 
 /**
@@ -15,6 +16,8 @@ const config=({
   use: {
 browserName:'chromium',
     headless: false,
+    screenshot: 'on',
+    trace: 'on',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
   },
 

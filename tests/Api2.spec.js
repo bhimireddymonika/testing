@@ -1,30 +1,49 @@
 const {test,expect}= require('@playwright/test');
+let webContext;
 
- test('@web browser context Playwright Test',async ({browser})=>
+test.beforeAll(async({browser}) =>
 {
-const context= await browser.newContext();
- const page= await context. newPage();
- const email="Bhimireddymonika@gmail.com";
- const productname='ADIDAS ORIGINAL';
-  await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
-  await page.locator("[routerlink='/auth/register']").click();
-  await page.locator("#firstName").fill("Bhimireddy");
-  await page.locator("#lastName").fill("Monika");
-  await page.locator("#userEmail").fill(email);
-  await page.locator("#userMobile").fill("7989591313");
-  await page.locator(".custom-select ").selectOption({value:"1: Doctor"});
-  await page.locator("[value='Female']").check();
-  await page.locator("#userPassword").fill("Monika2004");
-  await page.locator("#confirmPassword").fill("Monika2004");
-  await page.locator("[type='checkbox']").check();
-  await page.locator("#login").click();
-  await page.locator(".text-reset").click();
-  await page.locator("#userEmail").fill("Bhimireddymonika@gmail.com");
-  await page.locator("#userPassword").fill("Monika2004");
-  await page.getByRole('button',{name:'Login'}).click();
+ const context =  await browser.newContext();
+ const Page = await context.newPage();
+   await Page.goto("https://rahulshettyacademy.com/client/#/auth/login");
+   await Page.locator("#userEmail").fill("Bhimireddymonika@gmail.com");
+   await Page.locator("#userPassword").fill("Monika2004");
+   await Page.getByRole('button',{name:'Login'}).click();
+   await Page.waitForLoadState('networkidle');
+   await context.storageState({path:'state.json'});
+  webContext =  await browser.newContext({storageState:'state.json'});
+})
+
+
+ test('shop app login',async ()=>
+{
+// const context= await browser.newContext();
+//  const page= await context. newPage();
+//  const email="Bhimireddymonika@gmail.com";
+//  const productname='ADIDAS ORIGINAL';
+//   await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
+//   await page.locator("[routerlink='/auth/register']").click();
+//   await page.locator("#firstName").fill("Bhimireddy");
+//   await page.locator("#lastName").fill("Monika");
+//   await page.locator("#userEmail").fill(email);
+//   await page.locator("#userMobile").fill("7989591313");
+//   await page.locator(".custom-select ").selectOption({value:"1: Doctor"});
+//   await page.locator("[value='Female']").check();
+//   await page.locator("#userPassword").fill("Monika2004");
+//   await page.locator("#confirmPassword").fill("Monika2004");
+//   await page.locator("[type='checkbox']").check();
+//   await page.locator("#login").click();
+//   await page.locator(".text-reset").click();
+//   await page.locator("#userEmail").fill("Bhimireddymonika@gmail.com");
+//   await page.locator("#userPassword").fill("Monika2004");
+//   await page.getByRole('button',{name:'Login'}).click();
   // await page.locator("#login").click();
-  await page.waitForLoadState('networkidle');
-  await page.waitForSelector(".card-body b");
+//   await page.waitForLoadState('networkidle');
+const email="Bhimireddymonika@gmail.com";
+ const productname='ADIDAS ORIGINAL';
+//   await page.waitForSelector(".card-body b");
+ const page =await webContext.newPage();
+ await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
   const products =  page.locator(".card-body b");
    console.log (await products .first().textContent());
    console.log (await products .nth(1).textContent());
@@ -92,4 +111,19 @@ for(let i=0;i< await rows.count();++i)
 const orderIdDetails = await page.locator(".col-text").textContent();
 expect(orderId.includes(orderIdDetails)).toBeTruthy();
  await page.pause();
+});
+
+
+test('test case 2',async ()=>
+{
+const email="Bhimireddymonika@gmail.com";
+ const productname='ADIDAS ORIGINAL';
+//   await page.waitForSelector(".card-body b");
+ const page =await webContext.newPage();
+ await page.goto("https://rahulshettyacademy.com/client/#/auth/login");
+  const products =  page.locator(".card-body b");
+   console.log (await products .first().textContent());
+   console.log (await products .nth(1).textContent());
+   const alltitles = await products.allTextContents();
+    console.log(alltitles);
 });
