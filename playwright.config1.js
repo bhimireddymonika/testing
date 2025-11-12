@@ -20,7 +20,7 @@ const config=({
       name:'safari',
        use: {
       browserName:'webkit',
-    headless: false,
+    headless: true,
     screenshot: 'off',
     trace: 'on',
     ...devices['iPhone 12 Pro Max'],
@@ -31,7 +31,7 @@ const config=({
   name :'chrome',
   use: {
       browserName:'chromium',
-    headless: false,
+    headless: true,
     screenshot: 'on',
     video:'retain-on-failure',
     ignoreHttpsErrors:true,
