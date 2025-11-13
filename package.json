@@ -10,7 +10,7 @@
     "test:single": "npx playwright test tests/Api.spec.js -v",
     "show-report": "npx playwright show-report",
     "install:browsers": "npx playwright install --with-deps",
-    "CucumberRegression":"npx cucumber-js  --tags '@Regression' --retry 1 --exit --format html:cucumber-report.html"
+    "CucumberRegression": "npx cucumber-js  --tags '@Regression' --retry 1 --exit --format html:cucumber-report.html"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +18,8 @@
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.6.2",
-    "allure-playwright": "^3.4.2"
+    "allure-playwright": "^3.4.2",
+    "multiple-cucumber-html-reporter": "^3.9.3"
   },
   "directories": {
     "test": "tests"
